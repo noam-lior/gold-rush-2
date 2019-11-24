@@ -6,13 +6,15 @@ class GoldRush extends Matrix {
         super(rows, cols)
         this.player1 = { x: 0, y: 0, score: 0 }
         this.player2 = { x: rows - 1, y: cols - 1, score: 0 }
-        this.availableCoins=0;
         const mazeChecker = new MazeChecker(rows, cols)
         do {
             this.fillBoard()
             mazeChecker.getMaze(this.m)
         }
         while (!mazeChecker.checkMaze(0,0))
+        
+        this.availableCoins=0;
+        this.countAvailableCoins(mazeChecker)
     }
 
     fillBoard() {
@@ -64,12 +66,11 @@ class GoldRush extends Matrix {
         return false
     }
 
-    countAvailableCoins() {
-        const mazeChecker = new MazeChecker(rows, cols)
+    countAvailableCoins(mazeChecker) {
         mazeChecker.getMaze(this.m)
-        for (let i = 0; i < this.m.length)
-            for (let j = 0; j < this.m[0].length)
-                if (this.m[i][j] === "c" && mazeChecker.checkMaze(i,j)) {
+        for (let i = 0; i < this.m.length;i++)
+            for (let j = 0; j < this.m[0].length;j++)
+                if (this.m[i][j] === "c" && !mazeChecker.checkMaze(i,j)) {
                     this.availableCoins++
                 }
     }
