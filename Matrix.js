@@ -80,4 +80,4 @@ function generateMatrix(numRows, numColumns) {
 // console.log(m.findCoordinate(7)) //prints {x: 2, y: 1}
 
 /* Do not remove the exports below */
-module.exports = Matrix
+// module.exports = Matrix
